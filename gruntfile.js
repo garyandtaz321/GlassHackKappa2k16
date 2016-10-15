@@ -27,12 +27,24 @@ module.exports = function(grunt) {
 				files: [
 					{
 						expand: true,
-						cwd: 'bower_components/phaser-official/build/',
+						cwd: 'node_modules/phaser/build/',
 						src: ['phaser.min.js'],
 						dest: 'dist/vendor/'
 					}
 				]
 			},
+
+			textPhaser: {
+				files: [
+					{
+						expand: true,
+						cwd: 'node_modules/phaser-input/build/',
+						src: ['phaser-input.js'],
+						dest: 'dist/vendor/'
+					}
+				]
+			},
+
 			index: {
 				files: [
 					{

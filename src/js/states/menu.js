@@ -12,7 +12,7 @@ Menu.prototype = {
 
     var style = { font: "65px Arial", fill: "#ffffff", align: "center" };
 
-    this.text = this.add.text(x - 300, y - 200, "Press to Start", style);
+    this.text = this.add.text(x - 300, y - 200, "Welcome to the racing game!!!", style);
 
     this.input.onDown.add(this.onDown, this);
   },
