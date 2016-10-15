@@ -1,43 +1,40 @@
 var Player = require('../models/player');
 
 var Game = function () {
-  this.testentity = null;
+
 };
 
 module.exports = Game;
 
 Game.prototype = {
+  preload: function () {
+  
+  },
 
   create: function () {
-    var x = (this.game.width / 2) - 100;
-    var y = (this.game.height / 2) - 50;
+    this.game.world.setBounds(0, 0, 1600, 1600);
+    this.physics.startSystem(Phaser.Physics.P2JS);
+    
+    this.asset = this.add.image(this.world.centerX, this.world.centerY, 'car');
+    this.physics.p2.enable(this.asset);
 
-    this.testentity = new Player(this.game, x, y);
-    this.testentity.anchor.setTo(0.5, 0.5);
+    this.game.camera.follow(this.asset);
 
-    this.input.onDown.add(this.onInputDown, this);
+    this.cursors = this.input.keyboard.createCursorKeys();
   },
 
   update: function () {
-    var x, y, cx, cy, dx, dy, angle, scale;
-
-    x = this.input.position.x;
-    y = this.input.position.y;
-    cx = this.world.centerX;
-    cy = this.world.centerY;
-
-    angle = Math.atan2(y - cy, x - cx) * (180 / Math.PI);
-    this.testentity.angle = angle;
-
-    dx = x - cx;
-    dy = y - cy;
-    scale = Math.sqrt(dx * dx + dy * dy) / 100;
-
-    this.testentity.scale.x = scale * 0.6;
-    this.testentity.scale.y = scale * 0.6;
-  },
-
-  onInputDown: function () {
-    this.game.state.start('Menu');
+    if(this.cursors.up.isDown) {
+      this.asset.body.thrust(400);
+    }
+    if(this.cursors.down.isDown) {
+      this.asset.body.reverse(400);
+    }
+    if(this.cursors.left.isDown) {
+      this.asset.body.rotateLeft(100)
+    }
+    if(this.cursors.right.isDown) {
+      this.asset.body.rotateRight(100);
+    }
   }
 };
