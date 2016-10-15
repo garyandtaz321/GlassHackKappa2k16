@@ -21,23 +21,49 @@ Game.prototype = {
     this.game.camera.follow(this.asset);
 
     this.cursors = this.input.keyboard.createCursorKeys();
+
+    this.racestart = false;
+
+    this.time.events.add(Phaser.Timer.SECOND * 1, () => {
+    });
+
+    this.time.events.add(Phaser.Timer.SECOND * 2, () => {
+            
+    });
+
+    this.time.events.add(Phaser.Timer.SECOND * 3, () => {
+            
+    });
+
+    this.time.events.add(Phaser.Timer.SECOND * 4, () => {
+            this.go = this.add.text(395, 250, "Go!");
+            this.go.fill = "#ffffff";
+            this.go.fixedToCamera = true;
+            this.racestart = true;
+    });
+    
+    this.time.events.add(Phaser.Timer.SECOND * 5, () => {
+            this.go.alpha = 0;
+    });
   },
 
   update: function () {
-    if (this.cursors.left.isDown) {
-        this.asset.body.rotateLeft(100);
-    }
-    else if (this.cursors.right.isDown) {
-        this.asset.body.rotateRight(100);
-    }
-    else {
-        this.asset.body.setZeroRotation();
-    }
-    if (this.cursors.up.isDown){
-        this.asset.body.thrust(400);
-    }
-    else if (this.cursors.down.isDown){
-        this.asset.body.reverse(400);
+    if(this.racestart == true) {
+      if (this.cursors.left.isDown) {
+          this.asset.body.rotateLeft(100);
+      }
+      else if (this.cursors.right.isDown) {
+          this.asset.body.rotateRight(100);
+      }
+      else {
+          this.asset.body.setZeroRotation();
+      }
+      if (this.cursors.up.isDown){
+          this.asset.body.thrust(400);
+      }
+      else if (this.cursors.down.isDown){
+          this.asset.body.reverse(400);
+      }
     }
   }
 };
