@@ -11,26 +11,13 @@ module.exports = Game;
 Game.prototype = {
 
   create: function () {
-<<<<<<< HEAD
-=======
+
     this.game.world.setBounds(0, 0, 1600, 1600);
     this.physics.startSystem(Phaser.Physics.P2JS);
     
     this.asset = this.add.sprite(this.world.centerX, this.world.centerY, 'car');
-    this.physics.p2.enable(this.asset);
->>>>>>> b662e7760714389e263347bb75d0d4d3dc6fbc0a
+    this.physics.p2.enable(this.asset); 
 
-
-<<<<<<< HEAD
-  },
-
-  update: function () {
-
-  },
-
- 
- }
-=======
     this.cursors = this.input.keyboard.createCursorKeys();
 
     this.racestart = false;
@@ -78,4 +65,4 @@ Game.prototype = {
     }
   }
 };
->>>>>>> b662e7760714389e263347bb75d0d4d3dc6fbc0a
+
