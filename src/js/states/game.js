@@ -23,17 +23,27 @@ Game.prototype = {
     this.racestart = false;
 
     this.time.events.add(Phaser.Timer.SECOND * 1, () => {
+            this.three = this.add.text(395, 250, "3");
+            this.three.fill = "#ffffff";
+            this.three.fixedToCamera = true;
     });
 
     this.time.events.add(Phaser.Timer.SECOND * 2, () => {
-            
+            this.three.alpha = 0;
+            this.two = this.add.text(395, 250, "2");
+            this.two.fill = "#ffffff";
+            this.two.fixedToCamera = true;
     });
 
     this.time.events.add(Phaser.Timer.SECOND * 3, () => {
-            
+            this.two.alpha = 0;
+            this.one = this.add.text(395, 250, "1");
+            this.one.fill = "#ffffff";
+            this.one.fixedToCamera = true;
     });
 
     this.time.events.add(Phaser.Timer.SECOND * 4, () => {
+            this.one.alpha = 0;
             this.go = this.add.text(395, 250, "Go!");
             this.go.fill = "#ffffff";
             this.go.fixedToCamera = true;
