@@ -15,7 +15,7 @@ Preloader.prototype = {
     this.load.setPreloadSprite(this.asset);
     this.load.script('webfont', '//ajax.googleapis.com/ajax/libs/webfont/1.4.7/webfont.js');
     this.load.tilemap('track1', 'assets/tilemap/track1.json');
-    this.load.image('tileset', 'assets/tilemap/tileset.png');
+    this.load.image('tileset1', 'assets/tilemap/tilemap1.png');
     this.load.image('car', 'assets/img/car.png');
     this.load.spritesheet('go', 'assets/img/go.png', 190, 100);
     this.load.audio('racestart', 'assets/snd/racestart.wav');

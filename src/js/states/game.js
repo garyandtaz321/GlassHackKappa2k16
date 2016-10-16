@@ -16,7 +16,7 @@ Game.prototype = {
     this.physics.startSystem(Phaser.Physics.P2JS);
 
     this.map = this.add.tilemap('track1');
-    this.map.addTilesetImage('tileset', 'tileset');
+    this.map.addTilesetImage('tilemap1', 'tileset1');
 
     this.layer = this.map.createLayer('t1');
 
