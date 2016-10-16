@@ -25,6 +25,8 @@ Game.prototype = {
     this.racestart = false;
 
     this.time.events.add(Phaser.Timer.SECOND * 1, () => {
+            this.racestart = this.add.audio('racestart');
+            this.racestart.play();
             this.three = this.add.text(395, 250, "3");
             this.three.fill = "#ffffff";
             this.three.fixedToCamera = true;
@@ -73,6 +75,11 @@ Game.prototype = {
       }
       else if (this.cursors.down.isDown){
           this.asset.body.reverse(400);
+      }
+      else {
+          this.asset.body.velocity.x--;
+          this.asset.body.velocity.y--;
+          }
       }
     }
   }
