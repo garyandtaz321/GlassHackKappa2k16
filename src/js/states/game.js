@@ -1,16 +1,20 @@
 var Player = require('../models/player');
 
 
-
 var Game = function () {
 
 };
 
 module.exports = Game;
 
+var socket;
+
 Game.prototype = {
 
   create: function () {
+
+  socket = io.connect()
+
 
     this.game.world.setBounds(0, 0, 1600, 1600);
     this.physics.startSystem(Phaser.Physics.P2JS);
@@ -53,6 +57,9 @@ Game.prototype = {
     this.time.events.add(Phaser.Timer.SECOND * 5, () => {
             this.go.alpha = 0;
     });
+
+
+      setEventHandlers()
   },
 
   update: function () {
@@ -75,4 +82,23 @@ Game.prototype = {
     }
   }
 };
+
+
+var setEventHandlers = function () {
+  // Socket connection successful
+  socket.on('connect', onSocketConnected)
+
+  // Socket disconnection
+  socket.on('disconnect', onSocketDisconnect)
+
+  // New player message received
+  socket.on('new player', onNewPlayer)
+
+  // Player move message received
+  socket.on('move player', onMovePlayer)
+
+  // Player removed message received
+  socket.on('remove player', onRemovePlayer)
+}
+
 
