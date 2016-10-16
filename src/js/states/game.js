@@ -1,7 +1,8 @@
 var Player = require('../models/player');
 
 var Game = function () {
-
+    this.map = null;
+    this.layer = null;
 };
 
 module.exports = Game;
@@ -18,11 +19,19 @@ Game.prototype = {
     this.map = this.add.tilemap('track1');
     this.map.addTilesetImage('tileset', 'tileset');
 
-    this.layer = this.map.createLayer('Tile Layer 1');
+    this.layer = this.map.createLayer('t1');
+    this.layer.resizeWorld();
+    this.layer.debug = true;
+
+    this.map.setCollisionBetween(271, 272);
+    this.map.setCollisionBetween(359, 360);
 
     this.asset = this.add.sprite(this.world.centerX, this.world.centerY, 'car');
     this.physics.p2.enable(this.asset);
-    this.asset.body.debug = true;
+
+    this.physics.p2.convertTilemap(this.map, this.layer);
+
+    this.physics.p2.setBoundsToWorld(true, true, true, true, false);
 
     this.game.camera.follow(this.asset);
 
@@ -65,7 +74,7 @@ Game.prototype = {
     });
   },
 
-  update: function () {
+  update: function () {    
     if(this.racestart == true) {
       if (this.cursors.left.isDown) {
           this.asset.body.rotateLeft(100);
@@ -83,5 +92,6 @@ Game.prototype = {
           this.asset.body.reverse(400);
       }
     }
+    this.asset.body.debug = true;
   }
 };
