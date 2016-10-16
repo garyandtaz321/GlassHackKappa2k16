@@ -12,11 +12,14 @@ Game.prototype = {
   },
 
   create: function () {
-    this.game.world.setBounds(0, 0, 1024, 1024);
+    this.game.world.setBounds(0, 0, 3200, 3200);
     this.physics.startSystem(Phaser.Physics.P2JS);
 
-    this.track = this.add.tileSprite(0, 0, 1024, 1024, 'track1');
-    
+    this.map = this.add.tilemap('track1');
+    this.map.addTilesetImage('tileset', 'tileset');
+
+    this.layer = this.map.createLayer('t1');
+
     this.asset = this.add.sprite(this.world.centerX, this.world.centerY, 'car');
     this.physics.p2.enable(this.asset);
     this.asset.body.debug = true;
