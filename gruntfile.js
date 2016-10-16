@@ -33,6 +33,18 @@ module.exports = function(grunt) {
 					}
 				]
 			},
+
+			textPhaser: {
+				files: [
+					{
+						expand: true,
+						cwd: 'node_modules/phaser-input/build/',
+						src: ['phaser-input.js'],
+						dest: 'dist/vendor/'
+					}
+				]
+			},
+
 			index: {
 				files: [
 					{

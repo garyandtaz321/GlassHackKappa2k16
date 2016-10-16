@@ -1,3 +1,4 @@
+
 var Preloader = function (game) {
   this.asset = null;
   this.ready = false;
@@ -10,7 +11,7 @@ Preloader.prototype = {
   preload: function () {
     this.asset = this.add.sprite(320, 240, 'preloader');
     this.asset.anchor.setTo(0.5, 0.5);
-
+    
     this.load.onLoadComplete.addOnce(this.onLoadComplete, this);
     this.load.setPreloadSprite(this.asset);
     this.load.script('webfont', '//ajax.googleapis.com/ajax/libs/webfont/1.4.7/webfont.js');
