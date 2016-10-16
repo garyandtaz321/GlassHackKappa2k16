@@ -12,11 +12,14 @@ Game.prototype = {
   },
 
   create: function () {
-    this.game.world.setBounds(0, 0, 1600, 1600);
+    this.game.world.setBounds(0, 0, 1024, 1024);
     this.physics.startSystem(Phaser.Physics.P2JS);
+
+    this.track = this.add.tileSprite(0, 0, 1024, 1024, 'track1');
     
     this.asset = this.add.sprite(this.world.centerX, this.world.centerY, 'car');
     this.physics.p2.enable(this.asset);
+    this.asset.body.debug = true;
 
     this.game.camera.follow(this.asset);
 
@@ -75,11 +78,6 @@ Game.prototype = {
       }
       else if (this.cursors.down.isDown){
           this.asset.body.reverse(400);
-      }
-      else {
-          this.asset.body.velocity.x--;
-          this.asset.body.velocity.y--;
-          }
       }
     }
   }
