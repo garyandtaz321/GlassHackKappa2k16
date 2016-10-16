@@ -5,8 +5,12 @@ module.exports = Boot;
 Boot.prototype = {
 
   preload: function () {
+<<<<<<< HEAD
     this.load.image('preloader', 'assets/preloader.gif');
 
+=======
+    this.load.image('preloader', 'assets/img/preloader.gif');
+>>>>>>> 74c3bd3f36e591ad4745784a110ddcd3a9b76002
   },
 
   create: function () {

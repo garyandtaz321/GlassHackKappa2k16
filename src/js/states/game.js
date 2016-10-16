@@ -1,32 +1,38 @@
 var Player = require('../models/player');
 
-
 var Game = function () {
 
 };
 
 module.exports = Game;
 
-var socket;
-
 Game.prototype = {
+  preload: function () {
+  
+  },
 
   create: function () {
-
-  socket = io.connect()
-
-
-    this.game.world.setBounds(0, 0, 1600, 1600);
+    this.game.world.setBounds(0, 0, 3200, 3200);
     this.physics.startSystem(Phaser.Physics.P2JS);
-    
+
+    this.map = this.add.tilemap('track1');
+    this.map.addTilesetImage('tileset', 'tileset');
+
+    this.layer = this.map.createLayer('t1');
+
     this.asset = this.add.sprite(this.world.centerX, this.world.centerY, 'car');
-    this.physics.p2.enable(this.asset); 
+    this.physics.p2.enable(this.asset);
+    this.asset.body.debug = true;
+
+    this.game.camera.follow(this.asset);
 
     this.cursors = this.input.keyboard.createCursorKeys();
 
     this.racestart = false;
 
     this.time.events.add(Phaser.Timer.SECOND * 1, () => {
+            this.racestart = this.add.audio('racestart');
+            this.racestart.play();
             this.three = this.add.text(395, 250, "3");
             this.three.fill = "#ffffff";
             this.three.fixedToCamera = true;
@@ -57,9 +63,6 @@ Game.prototype = {
     this.time.events.add(Phaser.Timer.SECOND * 5, () => {
             this.go.alpha = 0;
     });
-
-
-      setEventHandlers()
   },
 
   update: function () {
@@ -82,23 +85,3 @@ Game.prototype = {
     }
   }
 };
-
-
-var setEventHandlers = function () {
-  // Socket connection successful
-  socket.on('connect', onSocketConnected)
-
-  // Socket disconnection
-  socket.on('disconnect', onSocketDisconnect)
-
-  // New player message received
-  socket.on('new player', onNewPlayer)
-
-  // Player move message received
-  socket.on('move player', onMovePlayer)
-
-  // Player removed message received
-  socket.on('remove player', onRemovePlayer)
-}
-
-
