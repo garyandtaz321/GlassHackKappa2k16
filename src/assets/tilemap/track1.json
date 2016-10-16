@@ -19,11 +19,11 @@
         {
          "columns":88,
          "firstgid":1,
-         "image":"tilemap1.png",
+         "image":"tileset1.png",
          "imageheight":2208,
          "imagewidth":2816,
          "margin":0,
-         "name":"tilemap1",
+         "name":"tileset",
          "spacing":0,
          "tilecount":6072,
          "tileheight":32,
